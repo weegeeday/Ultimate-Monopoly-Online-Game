@@ -1,10 +1,10 @@
 package test;
+
 import com.nullPointer.Domain.Controller.PlayerController;
 import com.nullPointer.Domain.Model.Cards.Roll3;
 import com.nullPointer.Domain.Model.GameEngine;
 import com.nullPointer.Domain.Model.Player;
 import com.nullPointer.Domain.Model.Square.*;
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;

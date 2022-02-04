@@ -1,6 +1,5 @@
 package com.nullPointer;
 
-import com.nullPointer.UI.Animator;
 import com.nullPointer.UI.AppWindow;
 
 public class Main {

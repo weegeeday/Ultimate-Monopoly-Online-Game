@@ -5,13 +5,13 @@ import com.nullPointer.Domain.Model.Cards.Card;
 import com.nullPointer.Domain.Model.*;
 import com.nullPointer.Domain.Model.Square.CommunityChestCardSquare;
 import com.nullPointer.Domain.Model.Square.PropertySquare;
-import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GameEngineTest {
 	Player p1, p2;
@@ -61,6 +61,7 @@ public class GameEngineTest {
 	}
 
 	@org.junit.Test
+
 	public void testDrawCommunityChestCard() {
 
 		Player currentPlayer = new Player("Tumay");
