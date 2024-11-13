@@ -21,39 +21,39 @@
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
-        <version>${junit.jupiter.version}</version>
+        <version>5.8.1</version>
         <scope>test</scope>
     </dependency>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
-        <version>${junit.jupiter.version}</version>
+        <version>5.8.1</version>
         <scope>test</scope>
     </dependency>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-params</artifactId>
-        <version>${junit.jupiter.version}</version>
+        <version>5.8.1</version>
         <scope>test</scope>
     </dependency>
     <dependency>
         <groupId>org.junit.platform</groupId>
         <artifactId>junit-platform-suite</artifactId>
-        <version>${junit.platform.version}</version>
+        <version>1.8.1</version>
         <scope>test</scope>
     </dependency>
-    <!-- TestNG dependency -->
+    <!-- TestNG dependency (optional if not used) -->
     <dependency>
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
-        <version>RELEASE</version>
+        <version>7.4.0</version>
         <scope>test</scope>
     </dependency>
-    <!-- JUnit 4 dependency -->
+    <!-- JUnit 4 dependency (optional if not used) -->
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.12</version>
+        <version>4.13.2</version>
         <scope>test</scope>
     </dependency>
 </dependencies>
