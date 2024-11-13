@@ -42,14 +42,14 @@
         <version>${junit.platform.version}</version>
         <scope>test</scope>
     </dependency>
-    <!-- TestNG dependency -->
+    <!-- TestNG dependency (optional if not used) -->
     <dependency>
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
         <version>RELEASE</version>
         <scope>test</scope>
     </dependency>
-    <!-- JUnit 4 dependency -->
+    <!-- JUnit 4 dependency (optional if not used) -->
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
