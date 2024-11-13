@@ -9,12 +9,10 @@ import com.nullPointer.Domain.Model.Square.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * @author HP
- *
- */
 public class SquareTest {
 
     Square bonus, go, goToJail, lux, rev, r3;
@@ -22,8 +20,8 @@ public class SquareTest {
     PlayerController pc;
     GameEngine gg;
 
-    @org.junit.Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    void setUp() throws Exception {
         pc = PlayerController.getInstance();
         gg = GameEngine.getInstance();
         bonus = new BonusSquare("JBonus", "BonusSquare");
@@ -42,9 +40,8 @@ public class SquareTest {
         p2.setRoll3Cards(new ArrayList<Roll3>(Arrays.asList(new Roll3("JRollCard", false, 1, 3, 5))));
     }
 
-    @org.junit.Test
-    public void goTest()
-    {
+    @Test
+    void goTest() {
         assertEquals(gg.getPlayerController(), pc);
 
         assertEquals(pc.getCurrentPlayer(), p1);
@@ -54,31 +51,28 @@ public class SquareTest {
         int finalMoneyP1 = p1.getMoney();
         System.out.println(finalMoneyP1);
         System.out.println(initMoneyP1);
-        assertEquals((finalMoneyP1-initMoneyP1), 300);
+        assertEquals((finalMoneyP1 - initMoneyP1), 300);
         go.evaluateSquare(gg, "flyover");
         finalMoneyP1 = p1.getMoney();
-
-        assertEquals((finalMoneyP1-initMoneyP1), 600);
+        assertEquals((finalMoneyP1 - initMoneyP1), 600);
     }
 
-    @org.junit.Test
-    public void bonusTest()
-    {
+    @Test
+    void bonusTest() {
         Player p2 = pc.getCurrentPlayer();
         int initMoneyP2 = p2.getMoney();
         bonus.evaluateSquare(gg);
         int finalMoneyP2 = p2.getMoney();
         System.out.println(finalMoneyP2);
         System.out.println(initMoneyP2);
-        assertEquals((finalMoneyP2-initMoneyP2), 300);
+        assertEquals((finalMoneyP2 - initMoneyP2), 300);
         bonus.evaluateSquare(gg, "flyover");
         finalMoneyP2 = p2.getMoney();
         assertEquals((finalMoneyP2 - initMoneyP2), 550);
     }
 
-    @org.junit.Test
-    public void goToJailTest()
-    {
+    @Test
+    void goToJailTest() {
         Player ben = pc.getCurrentPlayer();
         boolean maphustaMiyim = ben.isInJail();
         assertFalse(maphustaMiyim);
@@ -87,12 +81,10 @@ public class SquareTest {
         assertTrue(pekiSimdiMaphustaMiyim);
 
         ben.setinJail(false);
-
     }
 
-    @org.junit.Test
-    public void luxuryTaxTest()
-    {
+    @Test
+    void luxuryTaxTest() {
         Player kocBurssuz = pc.getCurrentPlayer();
         int babaParasi = kocBurssuz.getMoney();
         lux.evaluateSquare(gg);
@@ -100,9 +92,8 @@ public class SquareTest {
         assertEquals((vergilendirilmisKutsalKazanc - babaParasi), -75);
     }
 
-    @org.junit.Test
-    public void reverseTest()
-    {
+    @Test
+    void reverseTest() {
         Player duduPeri = pc.getCurrentPlayer();
         boolean zaman = duduPeri.getDirection();
         assertTrue(zaman);
@@ -111,9 +102,8 @@ public class SquareTest {
         assertFalse(zaman);
     }
 
-    @org.junit.Test
-    public void roll3Test()
-    {
+    @Test
+    void roll3Test() {
         Player current = pc.getCurrentPlayer();
         int currentOldMoney = current.getMoney();
         Player other = p2;
@@ -124,7 +114,7 @@ public class SquareTest {
         r3.evaluateSquare(gg);
         int currentNewMoney = current.getMoney();
         int otherNewMoney = other.getMoney();
-        assertEquals((currentNewMoney-currentOldMoney), 1500);
-        assertEquals((otherNewMoney-otherOldMoney), 200);
+        assertEquals((currentNewMoney - currentOldMoney), 1500);
+        assertEquals((otherNewMoney - otherOldMoney), 200);
     }
 }
