@@ -2,9 +2,9 @@ package test;
 import com.nullPointer.Domain.Controller.PlayerController;
 import com.nullPointer.Domain.Model.GameEngine;
 import com.nullPointer.Domain.Model.Player;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
 
 public class PlayerControllerTest {
 
@@ -12,7 +12,7 @@ public class PlayerControllerTest {
     Player p1;
     Player p2;
 
-    @org.junit.Before
+    @BeforeEach
     public void setUp() throws Exception {
         pController = PlayerController.getInstance();
         p1 = new Player("Player 1");
@@ -23,37 +23,37 @@ public class PlayerControllerTest {
         pController.addPlayer(p2);
     }
 
-    @org.junit.Test
+    @Test
     public void nextPlayer() {
         GameEngine.getInstance().setCurrentPlayer(p1);
         assertEquals(p2,pController.nextPlayer());
     }
 
-    @org.junit.Test
+    @Test
     public void putInJail() {
         pController.putInJail();
         assertTrue(pController.getCurrentPlayer().isInJail());
     }
 
-    @org.junit.Test
+    @Test
     public void getOutFromJail() {
         pController.getOutFromJail();
         assertFalse(pController.getCurrentPlayer().isInJail());
     }
 
-    @org.junit.Test
+    @Test
     public void movePlayer() {
         int targetPosition = 7;
         pController.movePlayer(targetPosition);
         assertEquals(targetPosition, pController.getCurrentPlayer().getTargetPosition());
     }
 
-    @org.junit.Test
+    @Test
     public void repOkCorrect() {
         assertTrue(pController.repOk());
     }
 
-    @org.junit.Test
+    @Test
     public void repOkIncorrect() {
         pController.getPlayers().clear();
         assertFalse(pController.repOk());
