@@ -3,7 +3,9 @@ import com.nullPointer.Domain.Model.GameEngine;
 import com.nullPointer.Domain.Model.Player;
 import com.nullPointer.Domain.Model.Square.PropertySquare;
 import java.util.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PropertySquareTest {
 
@@ -12,8 +14,8 @@ public class PropertySquareTest {
     GameEngine gameEngine;
     int[] imaginaryList = {100, 200, 300, 400, 500, 600, 700, 800};
 
-    @org.junit.Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    void setUp() throws Exception {
         gameEngine = GameEngine.getInstance();
         p1 = new Player("Player 1");
         p2 = new Player("Player 2");
@@ -24,21 +26,21 @@ public class PropertySquareTest {
         pSq = new PropertySquare("JUnit Avenue", "PropertySquare",150, "Blue", imaginaryList);
     }
 
-    @org.junit.Test
-    public void isOwnedForUnowned() {
+    @Test
+    void isOwnedForUnowned() {
         assertFalse(pSq.isOwned());
         assertNull(pSq.getOwner());
     }
 
-    @org.junit.Test
-    public void isOwnedForOwned() {
+    @Test
+    void isOwnedForOwned() {
         p1.setMoney(p1.getMoney() - pSq.getPrice());
         pSq.setOwner(p1);
         assertTrue(pSq.isOwned());
     }
 
-    @org.junit.Test
-    public void landingOnUnowned() {
+    @Test
+    void landingOnUnowned() {
         p1.setMoney(p1.getMoney() + pSq.getPrice());
         pSq.setOwner(null);
         int initMoney = p1.getMoney();
@@ -47,8 +49,8 @@ public class PropertySquareTest {
         assertEquals(p1.getMoney(), initMoney);
     }
 
-    @org.junit.Test
-    public void landingOnOwnedWithEnoughMoney() {
+    @Test
+    void landingOnOwnedWithEnoughMoney() {
         int initMoney1 = p1.getMoney();
         int initMoney2 = p2.getMoney();
         p1.setMoney(p1.getMoney() - pSq.getPrice());
@@ -59,8 +61,8 @@ public class PropertySquareTest {
         assertEquals(p1.getMoney(), initMoney1 - pSq.getPrice() + pSq.getRent());
     }
 
-    @org.junit.Test
-    public void greaterRentPaymentForImproved() {
+    @Test
+    void greaterRentPaymentForImproved() {
         int initRent = pSq.getRent();
         pSq.improve();
         int initMoney1 = p1.getMoney();
@@ -73,8 +75,8 @@ public class PropertySquareTest {
         assertFalse(p1.getMoney() == initMoney1 + initRent);
     }
 
-    @org.junit.Test
-    public void lessRentPaymentForDowngraded() {
+    @Test
+    void lessRentPaymentForDowngraded() {
         pSq.improve();
         int initRent = pSq.getRent();
         int initMoney1 = p1.getMoney();
@@ -87,8 +89,8 @@ public class PropertySquareTest {
         assertTrue(p1.getMoney() < initMoney1 + initRent);
     }
 
-    @org.junit.Test
-    public void smallerRentForImproved() {
+    @Test
+    void smallerRentForImproved() {
         pSq.improve();
         int upRent = pSq.getRent();
         pSq.downgrade();
@@ -96,8 +98,8 @@ public class PropertySquareTest {
         assertTrue(upRent > pSq.getRent());
     }
 
-    @org.junit.Test
-    public void landingOnOwnedWithNotEnoughMoney() {
+    @Test
+    void landingOnOwnedWithNotEnoughMoney() {
         int initMoney1 = p1.getMoney();
         pSq.setOwner(p1);
         p2.setMoney(10);
@@ -107,8 +109,8 @@ public class PropertySquareTest {
         assertTrue(p1.getMoney() != initMoney1 + pSq.getRent());
     }
 
-    @org.junit.Test
-    public void landingOnYourOwnProperty() {
+    @Test
+    void landingOnYourOwnProperty() {
         gameEngine.addPlayer(p1);
         p1.setMoney(p1.getMoney() - pSq.getPrice());
         int initMoney1 = p1.getMoney();
@@ -116,14 +118,13 @@ public class PropertySquareTest {
         assertEquals(initMoney1, p1.getMoney());
     }
 
-
-    @org.junit.Test
-    public void repOkCorrect() {
+    @Test
+    void repOkCorrect() {
         assertTrue(pSq.repOk());
     }
 
-    @org.junit.Test
-    public void repOkIncorrect() {
+    @Test
+    void repOkIncorrect() {
         ArrayList<PropertySquare> incorrectSquares = new ArrayList<PropertySquare>();
         PropertySquare incSq1 = new PropertySquare(null,"PropertySquare",150,"Green", imaginaryList);
         incorrectSquares.add(incSq1);
@@ -143,5 +144,4 @@ public class PropertySquareTest {
             assertFalse(propertySquare.repOk());
         }
     }
-
 }
